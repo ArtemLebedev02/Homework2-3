@@ -2,30 +2,30 @@
                 У пользователя должны быть доступны методы добавления элемента, получения элемента и удаления элемента из списк.
         Условия:
         - Нельзя использовать шаблоны(готовый LinkedList, методы для работы с ним)*/
-class List<T> {
+class Node<T> {
     public T data;
-    public List<T> next;
+    public Node<T> next;
 
-    public List(T data) {
+    public Node(T data) {
         this.data = data;
     }
 }
 
 class LinkedList<T> {
-    private List<T> head;
+    private Node<T> head;
 
     public LinkedList() {
         head = null;
     }
 
     public void addElement(T data) {
-        List<T> newList = new List<>(data);
-        newList.next = head;
-        head = newList;
+        Node<T> newNode = new Node<>(data);
+        newNode.next = head;
+        head = newNode;
     }
 
     public T getElement(int index) {
-        List<T> current = head;
+        Node<T> current = head;
         int count = 0;
         while (current != null) {
             if (count == index) {
@@ -38,8 +38,8 @@ class LinkedList<T> {
     }
 
     public void deleteElement(T data) {
-        List<T> current = head;
-        List<T> prev = null;
+        Node<T> current = head;
+        Node<T> prev = null;
 
         while (current != null) {
             if (current.data.equals(data)) {
@@ -55,17 +55,18 @@ class LinkedList<T> {
         }
     }
 }
+
 public class Main {
     public static void main(String[] args) {
-        LinkedList linkedList = new LinkedList<>();
+        LinkedList<Integer> linkedList = new LinkedList<>();
         linkedList.addElement(5);
         linkedList.addElement(9);
         linkedList.addElement(7);
         linkedList.addElement(1);
-        int element = (int) linkedList.getElement(2);
+        int element = linkedList.getElement(2);
         System.out.println(element);
         linkedList.deleteElement(9);
-        element = (int) linkedList.getElement(2);
+        element = linkedList.getElement(2);
         System.out.println(element);
     }
 }
